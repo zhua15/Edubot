@@ -63,7 +63,7 @@ export default function PromptSection() {
                     });
                 }
             }} value={value.input}></TextField>
-            <Button onClick={() => {
+            <Button variant="contained" color={listening ? "error" : "primary"} onClick={() => {
                 if (listening) {
                     SpeechRecognition.stopListening();
                 } else {
