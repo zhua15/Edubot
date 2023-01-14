@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Box, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { Box, Button, TextField, Typography } from "@mui/material";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 export default function PromptSection() {
 
@@ -13,6 +14,24 @@ export default function PromptSection() {
             input: event.target.value
         });
     }
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+    
+    useEffect(() => {
+        setValue({
+            input: transcript
+        })
+    }, [transcript])
+
+    if (!browserSupportsSpeechRecognition) {
+        return <span>Browser doesn't support speech recognition.</span>;
+    }
+    
 
     return (
         <Box>
@@ -44,6 +63,13 @@ export default function PromptSection() {
                     });
                 }
             }} value={value.input}></TextField>
+            <Button onClick={() => {
+                if (listening) {
+                    SpeechRecognition.stopListening();
+                } else {
+                    SpeechRecognition.startListening();
+                }
+            }}>{listening ? "Stop" : "Speak!"}</Button>
             </Box>
             <br></br>
             <br></br>
