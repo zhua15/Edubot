@@ -29,7 +29,9 @@ export default function PromptSection() {
                     .then((res) => res.json())
                     .then((data) => setMessage(data.message));
 
-                    setValue("");
+                    setValue({
+                        input: ""
+                    });
                 }
             }} value={value.input}></TextField>
             <br></br>

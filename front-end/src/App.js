@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import TitleSection from "./sections/TitleSection";
-import PromptSection from "./sections/PromptSection";
+import PromptSection from "./sections/PromptSection.tsx";
 
 function App() {
   const [message, setMessage] = useState("");
