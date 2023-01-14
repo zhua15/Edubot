@@ -14,5 +14,13 @@ app.listen(8080, () => {
 });
 
 app.post("/post", (req, res) => {
-  res.json({ message: req.body.input })
+    const { exec } = require('child_process');
+    var yourscript = exec('sh script.sh ' + req.body.input,
+                          (error, stdout, stderr) => {
+        console.log(stdout);
+        console.log(stderr);
+        if (error !== null) {
+            console.log(`exec error: ${error}`);
+        }
+    });
 })
