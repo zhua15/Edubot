@@ -15,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <TitleSection></TitleSection>
+      <br></br>
       <PromptSection></PromptSection>
     </div>
   );

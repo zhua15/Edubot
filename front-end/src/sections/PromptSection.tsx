@@ -17,7 +17,17 @@ export default function PromptSection() {
     return (
         <Box>
             <Typography>What should the bot do?</Typography>
-            <TextField id="prompt" label="Input prompt" variant='standard' onChange={handleChange} onKeyDown={(ev) => {
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+            <TextField sx={{
+                maxWidth: '80%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }} fullWidth id="prompt" label="Input prompt" variant='standard' onChange={handleChange} onKeyDown={(ev) => {
                 if (value.input !== "" && ev.key === 'Enter') {
                     fetch("http://localhost:8080/post", {
                         method: "POST",
@@ -34,9 +44,10 @@ export default function PromptSection() {
                     });
                 }
             }} value={value.input}></TextField>
+            </Box>
             <br></br>
             <br></br>
-            <Typography>{message}</Typography>
+            <Typography>{message !== "" ? "Input: " + message : ""}</Typography>
         </Box>
     )
 }
