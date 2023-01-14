@@ -4,18 +4,17 @@ import TitleSection from "./sections/TitleSection";
 import PromptSection from "./sections/PromptSection.tsx";
 
 function App() {
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    fetch("http://localhost:8080/message")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8080/message")
+  //     .then((res) => res.json())
+  //     .then((data) => setMessage(data.message));
+  // }, []);
 
   return (
     <div className="App">
       <TitleSection></TitleSection>
-      <h1>{message}</h1>
       <PromptSection></PromptSection>
     </div>
   );
