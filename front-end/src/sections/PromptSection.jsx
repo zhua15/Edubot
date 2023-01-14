@@ -18,7 +18,7 @@ export default function PromptSection() {
         <Box>
             <Typography>What should the bot do?</Typography>
             <TextField id="prompt" label="Input prompt" variant='standard' onChange={handleChange} onKeyDown={(ev) => {
-                if (ev.key === 'Enter') {
+                if (value.input !== "" && ev.key === 'Enter') {
                     fetch("http://localhost:8080/post", {
                         method: "POST",
                         headers: {
