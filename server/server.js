@@ -12,3 +12,7 @@ app.get("/message", (req, res) => {
 app.listen(8080, () => {
   console.log(`Server is running on port 8080.`);
 });
+
+app.post("/post", (req, res) => {
+  res.json({ message: req.body.input })
+})
