@@ -5,3 +5,8 @@ Deltahacks 9 project
 cd server
 npm install (if needed)
 npm start
+
+# Frontend
+cd front-end
+npm install (if needed)
+npm start
