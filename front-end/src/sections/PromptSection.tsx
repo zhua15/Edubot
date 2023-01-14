@@ -69,7 +69,25 @@ export default function PromptSection() {
                 } else {
                     SpeechRecognition.startListening();
                 }
-            }}>{listening ? "Stop" : "Speak!"}</Button>
+            }} sx={{marginRight: "5px"}}>{listening ? "Stop" : "Speak!"}</Button>
+            
+            <Button variant="contained" color={'success'} onClick={() => {
+                if (value.input !== "") {
+                    fetch("http://localhost:8080/post", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(value)
+                    })
+                    .then((res) => res.json())
+                    .then((data) => setMessage(data.message));
+
+                    setValue({
+                        input: ""
+                    });
+                }
+            }}>Submit</Button>
             </Box>
             <br></br>
             <br></br>
