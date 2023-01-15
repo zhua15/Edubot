@@ -16,7 +16,7 @@ app.listen(8080, () => {
 app.post("/post", (req, res) => {
     const { exec } = require('child_process');
     console.log(req.body.input)
-    var yourscript = exec('sh script.sh ' + '\'' + req.body.input + '\'',
+    var yourscript = exec('sh generate-function.sh ' + '\'' + req.body.input + '\'',
                           (error, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
