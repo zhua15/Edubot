@@ -47,7 +47,7 @@ export default function PromptSection() {
                 justifyContent: 'center',
                 alignItems: 'center'
             }} fullWidth id="prompt" label="Input prompt" variant='standard' onChange={handleChange} onKeyDown={(ev) => {
-                if (value.input !== "" && ev.key === 'Enter') {
+                if (ev.key === 'Enter') {
                     fetch("http://localhost:8080/post", {
                         method: "POST",
                         headers: {
@@ -72,22 +72,23 @@ export default function PromptSection() {
             }} sx={{marginRight: "5px"}}>{listening ? "Stop" : "Speak!"}</Button>
             
             <Button variant="contained" color={'success'} onClick={() => {
-                if (value.input !== "") {
-                    fetch("http://localhost:8080/post", {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(value)
-                    })
-                    .then((res) => res.json())
-                    .then((data) => setMessage(data.message));
-
-                    setValue({
-                        input: ""
-                    });
+                if (listening) {
+                    SpeechRecognition.stopListening();
                 }
-            }}>Submit</Button>
+                fetch("http://localhost:8080/post", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(value)
+                })
+                .then((res) => res.json())
+                .then((data) => setMessage(data.message));
+
+                setValue({
+                    input: ""
+                });
+            }} disabled={value.input === "" ? true : false}>Submit</Button>
             </Box>
             <br></br>
             <br></br>
